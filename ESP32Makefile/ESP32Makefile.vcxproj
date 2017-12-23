@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{979A81BD-C9C2-4BE0-AAF9-0EEA03A5A38E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>ESP32Thermostat</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>ESP32Makefile.bin</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <IncludePath>C:\SysGCC\esp32\lib\gcc\xtensa-esp32-elf\5.2.0\include;C:\SysGCC\esp32\usr\include;D:\Projects\projects\ESP8266\ESP32Makefile\ESP32Makefile\source;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\libraries\ArduinoOTA\src;C:\Users\P51\Documents\Arduino\libraries\PubSubClient\src;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\libraries\WiFi\src;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\cores\esp32\libb64;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\cores\esp32;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\app_trace;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\app_update;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\bluedroid;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\bootloader_support;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\bt;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\coap;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\config;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\console;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\driver;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\esp32;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\esp_adc_cal;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\ethernet;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\expat;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\fatfs;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\freertos;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\heap;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\jsmn;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\json;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\log;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\lwip;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\mbedtls;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\mbedtls_port;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\mdns;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\newlib;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\nghttp;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\nvs_flash;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\openssl;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\sdmmc;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\soc;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\spiffs;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\spi_flash;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\tcpip_adapter;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\ulp;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\vfs;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\wear_levelling;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\wpa_supplicant;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\xtensa-debug-module</IncludePath>
+    <NMakeBuildCommandLine>mk all</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>mk clean all</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>mk clean</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NMakeOutput>ESP32Thermostat.bin</NMakeOutput>
+    <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <IncludePath>C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\variants\esp32;D:\Projects\projects\ESP8266\ESP32ThermostatMakefile\ESP32Makefile\ugfx28\drivers\gdisp\ILI9341;D:\Projects\projects\ESP8266\ESP32ThermostatMakefile\ESP32Makefile\ugfx28;C:\SysGCC\esp32\lib\gcc\xtensa-esp32-elf\5.2.0\include;C:\SysGCC\esp32\usr\include;D:\Projects\projects\ESP8266\ESP32Makefile\ESP32Makefile\source;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\libraries\SPI\src;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\libraries\ArduinoOTA\src;C:\Users\P51\Documents\Arduino\libraries\PubSubClient\src;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\libraries\WiFi\src;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\cores\esp32\libb64;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\cores\esp32;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\app_trace;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\app_update;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\bluedroid;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\bootloader_support;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\bt;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\coap;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\config;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\console;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\driver;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\esp32;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\esp_adc_cal;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\ethernet;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\expat;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\fatfs;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\freertos;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\heap;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\jsmn;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\json;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\log;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\lwip;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\mbedtls;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\mbedtls_port;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\mdns;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\newlib;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\nghttp;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\nvs_flash;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\openssl;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\sdmmc;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\soc;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\spiffs;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\spi_flash;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\tcpip_adapter;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\ulp;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\vfs;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\wear_levelling;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\wpa_supplicant;C:\Users\P51\Documents\Arduino\hardware\espressif\esp32\tools\sdk\include\xtensa-debug-module</IncludePath>
+    <NMakeBuildCommandLine>mk all</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>mk clean all</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>mk clean</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>ESP32Makefile.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NMakeOutput>ESP32Makefile.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="common.mk" />
+    <None Include="compileArduinoLib.mk" />
+    <None Include="esp32core.mk" />
+    <None Include="Makefile" />
+    <None Include="mk.bat" />
+    <None Include="ugfx.mk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="esp32config.mk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\CmdHandler.cpp" />
+    <ClCompile Include="source\CustomWidgets.cpp" />
+    <ClCompile Include="source\DisplayHandler.cpp" />
+    <ClCompile Include="source\DisplayUtils.cpp" />
+    <ClCompile Include="source\ESP32Main.cpp" />
+    <ClCompile Include="source\ThermoHandler.cpp" />
+    <ClCompile Include="source\ThermostatController.cpp" />
+    <ClCompile Include="ugfx28\drivers\gdisp\ILI9341\board_ILI9341.cpp" />
+    <ClCompile Include="ugfx28\drivers\gdisp\ILI9341\gdisp_lld_ILI9341.c" />
+    <ClCompile Include="ugfx28\drivers\ginput\touch\ADS7843\gmouse_lld_ADS7843.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_fonts.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_bmp.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_gif.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_jpg.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_native.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_png.c" />
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_pixmap.c" />
+    <ClCompile Include="ugfx28\src\gfx.c" />
+    <ClCompile Include="ugfx28\src\ginput\ginput.c" />
+    <ClCompile Include="ugfx28\src\ginput\ginput_dial.c" />
+    <ClCompile Include="ugfx28\src\ginput\ginput_keyboard.c" />
+    <ClCompile Include="ugfx28\src\ginput\ginput_keyboard_microcode.c" />
+    <ClCompile Include="ugfx28\src\ginput\ginput_mouse.c" />
+    <ClCompile Include="ugfx28\src\ginput\ginput_toggle.c" />
+    <ClCompile Include="ugfx28\src\gos\gos_freertos.c" />
+    <ClCompile Include="ugfx28\src\gqueue\gqueue.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_button.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_checkbox.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_console.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_container.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_frame.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_gl3d.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_graph.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_image.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_keyboard.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_keyboard_layout.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_label.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_list.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_progressbar.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_radio.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_slider.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_tabset.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_textedit.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_widget.c" />
+    <ClCompile Include="ugfx28\src\gwin\gwin_wm.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\cfg.h" />
+    <ClInclude Include="source\CmdHandler.h" />
+    <ClInclude Include="source\CustomWidgets.h" />
+    <ClInclude Include="source\DisplayHandler.h" />
+    <ClInclude Include="source\DisplayUtils.h" />
+    <ClInclude Include="source\ThermoHandler.h" />
+    <ClInclude Include="source\ThermostatController.h" />
+    <ClInclude Include="ugfx28\drivers\gdisp\ILI9341\board_ILI9341.h" />
+    <ClInclude Include="ugfx28\drivers\gdisp\ILI9341\gdisp_lld_config.h" />
+    <ClInclude Include="ugfx28\drivers\gdisp\ILI9341\ILI9341.h" />
+    <ClInclude Include="ugfx28\drivers\ginput\touch\ADS7843\gmouse_lld_ADS7843_board.h" />
+    <ClInclude Include="ugfx28\ffconf.h" />
+    <ClInclude Include="ugfx28\gfx.h" />
+    <ClInclude Include="ugfx28\gfxconf.h" />
+    <ClInclude Include="ugfx28\src\gdisp\gdisp.h" />
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_colors.h" />
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_driver.h" />
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_image.h" />
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_image_support.h" />
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_options.h" />
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_pixmap.h" />
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_rules.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_dial.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_driver_dial.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_driver_keyboard.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_driver_mouse.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_driver_toggle.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_keyboard.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_keyboard_microcode.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_mouse.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_options.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_rules.h" />
+    <ClInclude Include="ugfx28\src\ginput\ginput_toggle.h" />
+    <ClInclude Include="ugfx28\src\gos\gos_freertos.h" />
+    <ClInclude Include="ugfx28\src\gqueue\gqueue.h" />
+    <ClInclude Include="ugfx28\src\gqueue\gqueue_options.h" />
+    <ClInclude Include="ugfx28\src\gqueue\gqueue_rules.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_button.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_checkbox.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_class.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_console.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_container.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_frame.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_gl3d.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_graph.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_image.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_keyboard.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_keyboard_layout.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_label.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_list.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_options.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_progressbar.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_radio.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_rules.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_slider.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_tabset.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_textedit.h" />
+    <ClInclude Include="ugfx28\src\gwin\gwin_widget.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

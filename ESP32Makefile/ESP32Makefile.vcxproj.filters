@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="makefile">
+      <UniqueIdentifier>{58d57d10-7fe4-412d-9075-b66332197d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx">
+      <UniqueIdentifier>{b7d32479-211e-4b6b-9f9e-f7a64da783df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx\display">
+      <UniqueIdentifier>{59a18853-6419-4c7e-9dda-e317c7abcd45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx\touch">
+      <UniqueIdentifier>{d6e52a4a-cf2b-4f6f-957f-8c6d221c2184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx\gos">
+      <UniqueIdentifier>{5b4ca06a-31c0-442e-b2d0-d76e782d3adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx\gqueue">
+      <UniqueIdentifier>{066b8e87-e198-43f6-98b5-8106013fa79f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx\ginput">
+      <UniqueIdentifier>{91b49039-2c40-4ecb-be22-3be03fd79946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx\gdisp">
+      <UniqueIdentifier>{d56e88b7-02b2-4a99-b9f6-3c68b0c04e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx\gwin">
+      <UniqueIdentifier>{e6d51742-083f-41d8-a4d1-14af2e4bb90f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="common.mk">
+      <Filter>makefile</Filter>
+    </None>
+    <None Include="compileArduinoLib.mk">
+      <Filter>makefile</Filter>
+    </None>
+    <None Include="esp32core.mk">
+      <Filter>makefile</Filter>
+    </None>
+    <None Include="Makefile">
+      <Filter>makefile</Filter>
+    </None>
+    <None Include="mk.bat">
+      <Filter>makefile</Filter>
+    </None>
+    <None Include="ugfx.mk">
+      <Filter>makefile</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="esp32config.mk">
+      <Filter>makefile</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\ESP32Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CmdHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DisplayHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ThermostatController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\drivers\gdisp\ILI9341\gdisp_lld_ILI9341.c">
+      <Filter>gfx\display</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\drivers\gdisp\ILI9341\board_ILI9341.cpp">
+      <Filter>gfx\display</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\drivers\ginput\touch\ADS7843\gmouse_lld_ADS7843.c">
+      <Filter>gfx\touch</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gos\gos_freertos.c">
+      <Filter>gfx\gos</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gqueue\gqueue.c">
+      <Filter>gfx\gqueue</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_fonts.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_bmp.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_gif.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_jpg.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_native.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_image_png.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gdisp\gdisp_pixmap.c">
+      <Filter>gfx\gdisp</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\ginput\ginput.c">
+      <Filter>gfx\ginput</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\ginput\ginput_dial.c">
+      <Filter>gfx\ginput</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\ginput\ginput_keyboard.c">
+      <Filter>gfx\ginput</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\ginput\ginput_keyboard_microcode.c">
+      <Filter>gfx\ginput</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\ginput\ginput_mouse.c">
+      <Filter>gfx\ginput</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\ginput\ginput_toggle.c">
+      <Filter>gfx\ginput</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DisplayUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gfx.c">
+      <Filter>gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_button.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_checkbox.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_console.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_container.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_frame.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_gl3d.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_graph.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_image.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_keyboard.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_keyboard_layout.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_label.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_list.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_progressbar.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_radio.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_slider.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_tabset.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_textedit.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_widget.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gwin\gwin_wm.c">
+      <Filter>gfx\gwin</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CustomWidgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ThermoHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\cfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CmdHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DisplayHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ThermostatController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\ffconf.h">
+      <Filter>gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\gfx.h">
+      <Filter>gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\gfxconf.h">
+      <Filter>gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\drivers\gdisp\ILI9341\board_ILI9341.h">
+      <Filter>gfx\display</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\drivers\gdisp\ILI9341\gdisp_lld_config.h">
+      <Filter>gfx\display</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\drivers\gdisp\ILI9341\ILI9341.h">
+      <Filter>gfx\display</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\drivers\ginput\touch\ADS7843\gmouse_lld_ADS7843_board.h">
+      <Filter>gfx\touch</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gos\gos_freertos.h">
+      <Filter>gfx\gos</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gqueue\gqueue.h">
+      <Filter>gfx\gqueue</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gqueue\gqueue_options.h">
+      <Filter>gfx\gqueue</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gqueue\gqueue_rules.h">
+      <Filter>gfx\gqueue</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gdisp\gdisp.h">
+      <Filter>gfx\gdisp</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_colors.h">
+      <Filter>gfx\gdisp</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_driver.h">
+      <Filter>gfx\gdisp</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_image.h">
+      <Filter>gfx\gdisp</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_image_support.h">
+      <Filter>gfx\gdisp</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_options.h">
+      <Filter>gfx\gdisp</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_pixmap.h">
+      <Filter>gfx\gdisp</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gdisp\gdisp_rules.h">
+      <Filter>gfx\gdisp</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_dial.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_driver_dial.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_driver_keyboard.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_driver_mouse.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_driver_toggle.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_keyboard.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_keyboard_microcode.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_mouse.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_options.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_rules.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\ginput\ginput_toggle.h">
+      <Filter>gfx\ginput</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DisplayUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_button.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_checkbox.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_class.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_console.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_container.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_frame.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_gl3d.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_graph.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_image.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_keyboard.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_keyboard_layout.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_label.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_list.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_options.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_progressbar.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_radio.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_rules.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_slider.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_tabset.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_textedit.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gwin\gwin_widget.h">
+      <Filter>gfx\gwin</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CustomWidgets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ThermoHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
