@@ -1,5 +1,9 @@
 ESP32_PATH := C:/Users/P51/Documents/Arduino/hardware/espressif/esp32
 ESP32_CORE_PATH := $(ESP32_PATH)/cores/esp32
+ARDUINO_CORE_LIBS_PATH := $(ESP32_PATH)/libraries
+ARDUINO_USER_LIBS_PATH := C:/Users/P51/Documents/Arduino/libraries
+ARDUINO_LIBS_PATH := $(ARDUINO_CORE_LIBS_PATH) $(ARDUINO_USER_LIBS_PATH)
+
 
 ESP32_OBJDIR := $(OBJDIR)/core
 
@@ -67,11 +71,6 @@ ESP32_INCLUDE_DIRS += $(ESP32_CORE_PATH) \
 						$(ESP32_PATH)/variants/esp32
 						
 						
-ARDUINO_CORE_LIBS_PATH := $(ESP32_PATH)/libraries
-ARDUINO_USER_LIBS_PATH := C:/Users/P51/Documents/Arduino/libraries
-ARDUINO_LIBS_PATH := $(ARDUINO_CORE_LIBS_PATH) $(ARDUINO_USER_LIBS_PATH)
-
-
 find_arduino_lib = $(foreach dir,$(ARDUINO_LIBS_PATH),$(wildcard $(dir)/$1))
 
 get_lib_target = $(OBJDIR)/$1/$1.a
