@@ -1,4 +1,4 @@
-# ESP32Thermostat
+# Thermostat based on ESP32
 Thermostat controlled though touch LCD and MQTT over WiFi
 
 ![Front pannel](Photo/20171222_140539.jpg?raw=true "Front pannel")
