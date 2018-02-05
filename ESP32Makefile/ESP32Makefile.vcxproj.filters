@@ -40,6 +40,12 @@
     <Filter Include="gfx\gwin">
       <UniqueIdentifier>{e6d51742-083f-41d8-a4d1-14af2e4bb90f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="gfx\gevent">
+      <UniqueIdentifier>{571bf492-736b-47ae-af14-682b5aee9ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gfx\gtimer">
+      <UniqueIdentifier>{7d59c1ca-db18-4d44-9b98-b3891c85907e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="common.mk">
@@ -209,6 +215,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\ThermoHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\RtcClock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gevent\gevent.c">
+      <Filter>gfx\gevent</Filter>
+    </ClCompile>
+    <ClCompile Include="ugfx28\src\gtimer\gtimer.c">
+      <Filter>gfx\gtimer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DisplayClock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -391,6 +409,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\ThermoHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\RtcClock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gevent\gevent.h">
+      <Filter>gfx\gevent</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gevent\gevent_options.h">
+      <Filter>gfx\gevent</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gevent\gevent_rules.h">
+      <Filter>gfx\gevent</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gtimer\gtimer.h">
+      <Filter>gfx\gtimer</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gtimer\gtimer_options.h">
+      <Filter>gfx\gtimer</Filter>
+    </ClInclude>
+    <ClInclude Include="ugfx28\src\gtimer\gtimer_rules.h">
+      <Filter>gfx\gtimer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DisplayClock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,7 +14,7 @@
 
 #define NUMBER_BUTTONS_X_SPACE    3
 
-#define MAX_NUMBER_TEXT_LENGTH    15
+#define MAX_NUMBER_TEXT_LENGTH    20
 
 
 #define RADIOS_GROUP_START      0

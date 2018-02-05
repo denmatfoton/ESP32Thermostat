@@ -18,7 +18,7 @@ enum ThermostatMode
 {
     NORMAL_MODE = 0,
     NIGHT_MODE,
-    BEDROOM_CLOSE_MODE
+    BEDROOM_OFF_MODE
 };
 
 

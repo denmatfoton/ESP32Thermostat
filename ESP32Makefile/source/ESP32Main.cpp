@@ -7,12 +7,14 @@
 #include "ThermoHandler.h"
 #include "ThermostatController.h"
 #include "DisplayHandler.h"
+#include "RtcClock.h"
 
 
 unsigned long lastMQTTCheck = -5000; //This will force an immediate check on init.
 
 WiFiClient espClient;
 PubSubClient client(espClient);
+RtcClock rtc_time(-5);
 
 
 void initWifi()
@@ -44,10 +46,13 @@ void checkMQTTConnection()
             if (client.connect(CLIENT_NAME, MQTT_USER, MQTT_PASSWORD))
             {
                 Serial.println("connected");
-                client.subscribe(cmd_topic);
-                client.subscribe(bedroom_temp_topic);
-                client.subscribe(livingroom_temp_topic);
-                client.subscribe(outside_temp_topic);
+                client.subscribe(POWER_TOPIC);
+                client.subscribe(MODE_TOPIC);
+                client.subscribe(TARGET_TEMP_TOPIC);
+                client.subscribe(FAN_TOPIC);
+                client.subscribe(BEDROOM_TEMP_TOPIC);
+                client.subscribe(LIVINGROOM_TEMP_TOPIC);
+                client.subscribe(OUTSIDE_TEMP_TOPIC);
             }
             else
             {
@@ -57,7 +62,8 @@ void checkMQTTConnection()
         }
         else
         {
-            Serial.println("Not connected to WiFI AP, abandoned connect.");
+            //Serial.println("Not connected to WiFI AP, abandoned connect.");
+            WiFi.reconnect();
         }
     }
 }
@@ -89,6 +95,8 @@ void setup()
 
     initWifi();
 
+    rtc_time.begin();
+
     client.setServer(MQTT_SERVER, MQTT_PORT);
     client.setCallback(MQTTcallback);
 
@@ -99,7 +107,6 @@ void setup()
     ArduinoOTA.begin();
 
     TermometerSetup();
-    Serial.printf("Main core id: %d\n", xPortGetCoreID());
 }
 
 
@@ -118,13 +125,14 @@ void loop()
     ArduinoOTA.handle();
 
     CheckTemperatue();
-    thermoController.process();
+    thermoController.Process();
+    rtc_time.Process();
 
     vTaskDelay(500);
 }
 
 
-void SendMqtt(const char* topic, const char* response)
+void SendMqtt(const char* topic, const char* response, bool retain)
 {
-    client.publish(topic, response);
+    client.publish(topic, response, retain);
 }

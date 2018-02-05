@@ -28,6 +28,9 @@ endif
 
 GEN_ESP32PART := $(ESP32_PATH)/tools/gen_esp32part.exe
 ESPTOOL := $(ESP32_PATH)/tools/esptool.exe
+ESPOTATOOL := $(ESP32_PATH)/tools/espota.exe
+ESPOTA_PASSOWORD := UPDATE_PW
+
 
 ESPTOOL_LINK_PARAMS := --chip esp32 elf2image --flash_mode "dio" --flash_freq "80m" --flash_size "4MB"
 ESPTOOL_FLASH_PARAMS := --chip esp32 --port "COM13" --baud 921600 --before default_reset --after hard_reset \

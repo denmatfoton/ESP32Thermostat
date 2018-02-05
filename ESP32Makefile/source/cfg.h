@@ -40,26 +40,30 @@
 #define MQTT_PASSWORD     "MQTT_password"
 
 //MQTT topics
-#define MAX_PAYLOAD_LENGTH     100
-#define CMD_TOPIC              "myhome/thermostat"
-#define BEDROOM_TEMP_TOPIC     "myhome/bedroom/temphum"
-#define LIVINGROOM_TEMP_TOPIC  "myhome/livingroom/temphum"
-#define OUTSIDE_TEMP_TOPIC     "myhome/outside/temp"
-#define CENTER_TEMP_TOPIC      "myhome/center/temp"
-#define STATUS_TOPIC           "myhome/thermostat/status"
+#define MAX_PAYLOAD_LENGTH       100
+#define POWER_TOPIC              "myhome/thermostat"
+#define MODE_TOPIC               "myhome/thermostat/mode"
+#define TARGET_TEMP_TOPIC        "myhome/thermostat/target_temp"
+#define FAN_TOPIC                "myhome/thermostat/fan"
 
-extern const char cmd_topic[];
-extern const char bedroom_temp_topic[];
-extern const char livingroom_temp_topic[];
-extern const char outside_temp_topic[];
-extern const char status_topic[];
+#define POWER_STATE_TOPIC        "myhome/thermostat/state"
+#define MODE_STATE_TOPIC         "myhome/thermostat/mode/state"
+#define TARGET_TEMP_STATE_TOPIC  "myhome/thermostat/target_temp/state"
+#define FAN_STATE_TOPIC          "myhome/thermostat/fan/state"
 
-void SendMqtt(const char* topic, const char* response);
+#define BEDROOM_TEMP_TOPIC       "myhome/bedroom/temphum"
+#define LIVINGROOM_TEMP_TOPIC    "myhome/livingroom/temphum"
+#define OUTSIDE_TEMP_TOPIC       "myhome/outside/temp"
+
+#define AVERAGE_TEMP_TOPIC       "myhome/thermostat/cur_temp"
+#define CENTER_TEMP_TOPIC        "myhome/center/temphum"
 
 
 #define TERMO_COUNT          3      // inside the house
 #define TEMPR_COUNT          4      // all sensors (inside + outside)
 #define HUM_COUNT            TERMO_COUNT
-#define TEMPR_CUSHION        1.0f   // heat/cool 1 degree more/less to avoid too offen enabling/disabling of climat facility
+#define TEMPR_CUSHION_MIN    1.0f   // heat/cool 1 degree more/less to avoid too offen enabling/disabling of climat facility
+#define TEMPR_CUSHION_MAX    3.0f
+#define TEMPR_ACTUALITY_TIME 90 // s
 
 #endif // CFG_H

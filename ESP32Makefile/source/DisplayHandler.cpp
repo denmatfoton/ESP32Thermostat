@@ -6,7 +6,7 @@
 #include "CustomWidgets.h"
 
 
-#define DISPLAY_TASK_STACK_SIZE   4096//2048
+#define DISPLAY_TASK_STACK_SIZE   4096
 #define DISPLAY_TASK_PIORITY      1
 
 #define	ScrWidth			gdispGetWidth()
@@ -30,13 +30,9 @@ void DisplaySetup()
 
 void inputCallback(Input* input)
 {
-    if (input == &thermostatWi.maxTempInput)
+    if (input == &thermostatWi.targetTempInput)
     {
-        thermoController.setMaxTemperature(thermostatWi.maxTempInput.getValue());
-    }
-    else if (input == &thermostatWi.minTempInput)
-    {
-        thermoController.setMinTemperature(thermostatWi.minTempInput.getValue());
+        thermoController.setTargetTemperature(thermostatWi.targetTempInput.getValue());
     }
     else if (input == &thermostatWi.thermostatEnabledInput)
     {
@@ -49,17 +45,16 @@ void inputCallback(Input* input)
     }
     else if (input == &thermostatWi.fanEnabledInput)
     {
-        Serial.println("Fan Enabled Callback");
         thermoController.setFanEnabled(thermostatWi.fanEnabledInput.getValue());
     }
 }
 
 
-ThermostatWidget::ThermostatWidget() : maxTempInput(15, 50, "Max:%dC"),
-                                       minTempInput(15, 50, "Min:%dC"),
+ThermostatWidget::ThermostatWidget() : targetTempInput(15, 50, "Target: %dC"),
                                        thermostatEnabledInput("ON", "OFF"),
                                        fanEnabledInput("ON", "OFF"),
-                                       thermostatModeInput()
+                                       thermostatModeInput(),
+                                       clock(DISPLAY_SECONDS)
 {
 }
 
@@ -100,13 +95,16 @@ void ThermostatWidget::createThermostatWidget(void)
     wi.g.x = ELEMENTS_SPACE;
     wi.g.y = ELEMENTS_SPACE;
     wi.g.show = TRUE;
-    minTempInput.init(&wi, dejaVuSans20, inputCallback);
+    targetTempInput.init(&wi, dejaVuSans20, inputCallback);
+
+
+    wi.g.x += targetTempInput.getWidth() + 30;
+    wi.g.y = 10;
+    clock.init(&wi, dejaVuSans20, 30);
     
-    wi.g.x += minTempInput.getWidth() + 10;
-    maxTempInput.init(&wi, dejaVuSans20, inputCallback);
 
     wi.g.x = ELEMENTS_SPACE + (MODE_RADIO_WIDTH - ENABLE_BUTTON_WIDTH) / 2;
-    wi.g.y += NUMBER_INPUT_HEIGHT + 10;
+    wi.g.y += NUMBER_INPUT_HEIGHT;
     wi.g.width = ENABLE_BUTTON_WIDTH;
     wi.g.height = ENABLE_BUTTON_HEIGHT;
     thermostatEnabledInput.init(&wi, dejaVuSans20, inputCallback);
@@ -134,8 +132,7 @@ void ThermostatWidget::createThermostatWidget(void)
     wi.g.height = FAN_BUTTON_HEIGHT;
     fanEnabledInput.init(&wi, dejaVuSans20, inputCallback);
 
-    minTempInput.setValue(thermoController.getMinTemperature());
-    maxTempInput.setValue(thermoController.getMaxTemperature());
+    targetTempInput.setValue(thermoController.getTargetTemperature());
     thermostatEnabledInput.setValue(thermoController.getEnabled());
     thermostatModeInput.setValue(thermoController.getThermoMode());
     fanEnabledInput.setValue(false);
@@ -213,7 +210,7 @@ void ThermostatWidget::updateStyle()
         }
     }
     else if (thermostatModeInput.getValue() == NORMAL_MODE ||
-            thermostatModeInput.getValue() == BEDROOM_CLOSE_MODE)
+            thermostatModeInput.getValue() == BEDROOM_OFF_MODE)
     {
         if (gwinGetDefaultStyle() != &WhiteWidgetStyle)
         {
@@ -230,8 +227,7 @@ void ThermostatWidget::processEvent(GEvent* pe)
     switch (pe->type)
     {
     case GEVENT_GWIN_BUTTON:
-        maxTempInput.ProcessEvent(pe);
-        minTempInput.ProcessEvent(pe);
+        targetTempInput.ProcessEvent(pe);
         thermostatEnabledInput.ProcessEvent(pe);
         fanEnabledInput.ProcessEvent(pe);
         break;
@@ -239,6 +235,11 @@ void ThermostatWidget::processEvent(GEvent* pe)
     case GEVENT_GWIN_RADIO:
         thermostatModeInput.ProcessEvent(pe);
         break;
+
+    case GEVENT_CLOCK:
+        clock.ProcessEvent(pe);
+        break;
+
     default:
         break;
     }
@@ -261,6 +262,7 @@ static void DisplayTask(void* param)
 
     geventListenerInit(&gl);
     gwinAttachListener(&gl);
+    geventAttachSource(&gl, GCLOCK_SOURCE, 0);
 
     while (1)
     {

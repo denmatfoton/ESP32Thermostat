@@ -5,6 +5,9 @@
 #include "cfg.h"
 
 
+void SendMqtt(const char* topic, const char* response, bool retain = false);
+
+
 void addFloatToStr(char* str, const float f, uint8_t num_of_dig_after_point)
 {
     uint16_t fraction;
@@ -148,17 +151,15 @@ static EventGroupHandle_t xEventGroup = NULL;
 
 static float currentTemperature;
 static uint8_t currentHumidity;
-//static SemaphoreHandle_t termoMutex;
 
 static void TermometerTask(void* param);
 
 
 void TermometerSetup()
 {
-    //termoMutex = xSemaphoreCreateMutex();
     xEventGroup = xEventGroupCreate();
 
-    xTaskCreate(TermometerTask, "TermometerTask", configMINIMAL_STACK_SIZE + 256, NULL, 1, &termometerTaskHandle);
+    xTaskCreate(TermometerTask, "TermometerTask", configMINIMAL_STACK_SIZE + 512, NULL, 1, &termometerTaskHandle);
 }
 
 
@@ -178,7 +179,7 @@ void CheckTemperatue()
     {
         if (dht11.getLastStaus() == STATUS_OK)
         {
-            snprintf(msg, 30, "{temp:%.1f,hum:%d}", currentTemperature, currentHumidity);
+            snprintf(msg, 30, "{\"temp\":%.1f,\"hum\":%d}", currentTemperature, currentHumidity);
             SendMqtt(CENTER_TEMP_TOPIC, msg);
 
             thermoController.updateTemperature(CENTER_IDX, currentTemperature);
@@ -188,6 +189,9 @@ void CheckTemperatue()
         {
             Serial.println("Termo error");
         }
+
+        snprintf(msg, 30, "%.1f", thermoController.getAverageTemperature());
+        SendMqtt(AVERAGE_TEMP_TOPIC, msg);
     }
 }
 

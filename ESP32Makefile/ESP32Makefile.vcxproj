@@ -101,6 +101,8 @@
     <Text Include="esp32config.mk" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\DisplayClock.cpp" />
+    <ClCompile Include="source\RtcClock.cpp" />
     <ClCompile Include="source\CmdHandler.cpp" />
     <ClCompile Include="source\CustomWidgets.cpp" />
     <ClCompile Include="source\DisplayHandler.cpp" />
@@ -120,6 +122,7 @@
     <ClCompile Include="ugfx28\src\gdisp\gdisp_image_native.c" />
     <ClCompile Include="ugfx28\src\gdisp\gdisp_image_png.c" />
     <ClCompile Include="ugfx28\src\gdisp\gdisp_pixmap.c" />
+    <ClCompile Include="ugfx28\src\gevent\gevent.c" />
     <ClCompile Include="ugfx28\src\gfx.c" />
     <ClCompile Include="ugfx28\src\ginput\ginput.c" />
     <ClCompile Include="ugfx28\src\ginput\ginput_dial.c" />
@@ -129,6 +132,7 @@
     <ClCompile Include="ugfx28\src\ginput\ginput_toggle.c" />
     <ClCompile Include="ugfx28\src\gos\gos_freertos.c" />
     <ClCompile Include="ugfx28\src\gqueue\gqueue.c" />
+    <ClCompile Include="ugfx28\src\gtimer\gtimer.c" />
     <ClCompile Include="ugfx28\src\gwin\gwin.c" />
     <ClCompile Include="ugfx28\src\gwin\gwin_button.c" />
     <ClCompile Include="ugfx28\src\gwin\gwin_checkbox.c" />
@@ -154,8 +158,10 @@
     <ClInclude Include="source\cfg.h" />
     <ClInclude Include="source\CmdHandler.h" />
     <ClInclude Include="source\CustomWidgets.h" />
+    <ClInclude Include="source\DisplayClock.h" />
     <ClInclude Include="source\DisplayHandler.h" />
     <ClInclude Include="source\DisplayUtils.h" />
+    <ClInclude Include="source\RtcClock.h" />
     <ClInclude Include="source\ThermoHandler.h" />
     <ClInclude Include="source\ThermostatController.h" />
     <ClInclude Include="ugfx28\drivers\gdisp\ILI9341\board_ILI9341.h" />
@@ -173,6 +179,9 @@
     <ClInclude Include="ugfx28\src\gdisp\gdisp_options.h" />
     <ClInclude Include="ugfx28\src\gdisp\gdisp_pixmap.h" />
     <ClInclude Include="ugfx28\src\gdisp\gdisp_rules.h" />
+    <ClInclude Include="ugfx28\src\gevent\gevent.h" />
+    <ClInclude Include="ugfx28\src\gevent\gevent_options.h" />
+    <ClInclude Include="ugfx28\src\gevent\gevent_rules.h" />
     <ClInclude Include="ugfx28\src\ginput\ginput.h" />
     <ClInclude Include="ugfx28\src\ginput\ginput_dial.h" />
     <ClInclude Include="ugfx28\src\ginput\ginput_driver_dial.h" />
@@ -189,6 +198,9 @@
     <ClInclude Include="ugfx28\src\gqueue\gqueue.h" />
     <ClInclude Include="ugfx28\src\gqueue\gqueue_options.h" />
     <ClInclude Include="ugfx28\src\gqueue\gqueue_rules.h" />
+    <ClInclude Include="ugfx28\src\gtimer\gtimer.h" />
+    <ClInclude Include="ugfx28\src\gtimer\gtimer_options.h" />
+    <ClInclude Include="ugfx28\src\gtimer\gtimer_rules.h" />
     <ClInclude Include="ugfx28\src\gwin\gwin.h" />
     <ClInclude Include="ugfx28\src\gwin\gwin_button.h" />
     <ClInclude Include="ugfx28\src\gwin\gwin_checkbox.h" />

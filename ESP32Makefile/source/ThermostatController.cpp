@@ -5,16 +5,15 @@
 
 
 ThermostatController thermoController;
-#define MSG_MAX_LENGTH         20
-static char msg[MSG_MAX_LENGTH];
+#define MSG_MAX_LENGTH             20
 #define UNDEFINED_TEMP_VALUE       -1e10f
+#define SEND_RETAIN_TO_TOPIC       0
+
+void SendMqtt(const char* topic, const char* response, bool retain = false);
 
 
-ThermostatController::ThermostatController()
+ThermostatController::ThermostatController() : target_temperature(21.f)
 {
-    min_temperature = 19;
-    max_temperature = 25;
-
     vPortCPUInitializeMutex(&mutex);
     for (int i = 0; i < TERMO_COUNT; ++i)
     {
@@ -32,18 +31,14 @@ ThermostatController::ThermostatController()
 }
 
 
-void ThermostatController::process()
+void ThermostatController::Process()
 {
-    if (!enabled)
-    {
-        setRelayState(NONE);
-        return;
-    }
-
     float max_current_temperature = UNDEFINED_TEMP_VALUE;
     float min_current_temperature = UNDEFINED_TEMP_VALUE;
-    float average_current_temperature = 0;
+    float S = 0;
     uint16_t coeff_sum = 0;
+
+    checkActuality();
 
     for (int i = 0; i < TERMO_COUNT; ++i)
     {
@@ -59,43 +54,55 @@ void ThermostatController::process()
         {
             min_current_temperature = termo_values[i];
         }
-        average_current_temperature += termo_values[i] * termo_coeff[i];
+        S += termo_values[i] * termo_coeff[i];
         coeff_sum += termo_coeff[i];
     }
     if (max_current_temperature == UNDEFINED_TEMP_VALUE)
     {
+        setRelayState(NONE);
         return;
     }
 
-    average_current_temperature /= coeff_sum;
-    Serial.printf("Average: %f, min: %f, max: %f\n", average_current_temperature, min_temperature, max_temperature);
+    average_current_temperature = S / coeff_sum;
 
+    if (!enabled)
+    {
+        setRelayState(NONE);
+        return;
+    }
+
+    
     switch (current_state)
     {
     case  HEATING_ENABLED:
-        if (average_current_temperature > min_temperature + TEMPR_CUSHION ||
-            max_current_temperature > max_temperature)
+        if (average_current_temperature >= target_temperature ||
+            max_current_temperature >= target_temperature + TEMPR_CUSHION_MAX)
         {
             setRelayState(NONE);
         }
         break;
     case  CONDITIONING_ENABLED:
-        if (average_current_temperature < max_temperature - TEMPR_CUSHION ||
-            min_current_temperature < min_temperature)
+        if (average_current_temperature <= target_temperature ||
+            min_current_temperature < target_temperature - TEMPR_CUSHION_MAX)
         {
             setRelayState(NONE);
         }
         break;
     case NONE:
-        if (average_current_temperature < min_temperature &&
-            max_current_temperature < max_temperature)
+        if (termo_values[OUTSIDE_IDX] != UNDEFINED_TEMP_VALUE)
         {
-            setRelayState(HEATING_ENABLED);
+            checkEnableCondition(termo_values[OUTSIDE_IDX] < target_temperature, min_current_temperature, max_current_temperature);
         }
-        else if (average_current_temperature > max_temperature &&
-            min_current_temperature > min_temperature)
+        else
         {
-            setRelayState(CONDITIONING_ENABLED);
+            if (last_enabled_state == NONE)
+            {
+                checkEnableCondition(average_current_temperature < target_temperature, min_current_temperature, max_current_temperature);
+            }
+            else
+            {
+                checkEnableCondition(last_enabled_state == HEATING_ENABLED, min_current_temperature, max_current_temperature);
+            }
         }
         break;
     default:
@@ -104,58 +111,106 @@ void ThermostatController::process()
 }
 
 
-void ThermostatController::setEnabled(bool val)
+void ThermostatController::checkEnableCondition(bool heating, float min_current_temperature, float max_current_temperature)
 {
-    enabled = val;
-    if (enabled)
+    if (heating)
     {
-        SendMqtt(status_topic, "on");
+        if (average_current_temperature < target_temperature - TEMPR_CUSHION_MIN &&
+            max_current_temperature < target_temperature + TEMPR_CUSHION_MAX)
+        {
+            setRelayState(HEATING_ENABLED);
+        }
     }
     else
     {
-        SendMqtt(status_topic, "off");
+        if (average_current_temperature > target_temperature + TEMPR_CUSHION_MIN &&
+            min_current_temperature > target_temperature - TEMPR_CUSHION_MAX)
+        {
+            setRelayState(CONDITIONING_ENABLED);
+        }
     }
 }
 
-void ThermostatController::setMinTemperature(const float value)
+
+void ThermostatController::setEnabled(bool val)
 {
-    taskENTER_CRITICAL(&mutex);
-    min_temperature = value;
-    taskEXIT_CRITICAL(&mutex);
-    snprintf(msg, MSG_MAX_LENGTH, "{min_temp:%.1f}", value);
-    SendMqtt(status_topic, msg);
+    char* msg;
+
+    if (val)
+    {
+        msg = "on";
+    }
+    else
+    {
+        msg = "off";
+    }
+
+    SendMqtt(POWER_STATE_TOPIC, msg);
+
+    if (enabled != val)
+    {
+        enabled = val;
+        last_enabled_state = NONE;
+#if SEND_RETAIN_TO_TOPIC
+        SendMqtt(POWER_TOPIC, msg, true);
+#endif
+    }
 }
 
-void ThermostatController::setMaxTemperature(const float value)
+
+void ThermostatController::setTargetTemperature(const float value)
 {
-    taskENTER_CRITICAL(&mutex);
-    max_temperature = value;
-    taskEXIT_CRITICAL(&mutex);
-    snprintf(msg, MSG_MAX_LENGTH, "{max_temp:%.1f}", value);
-    SendMqtt(status_topic, msg);
+    static char msg[MSG_MAX_LENGTH];
+
+    snprintf(msg, MSG_MAX_LENGTH, "%.1f", value);
+    SendMqtt(TARGET_TEMP_STATE_TOPIC, msg);
+    if (target_temperature != value)
+    {
+        target_temperature = value;
+#if SEND_RETAIN_TO_TOPIC
+        SendMqtt(TARGET_TEMP_TOPIC, msg, true);
+#endif
+    }
+}
+
+
+void ThermostatController::updateTemperature(const uint8_t idx, const float value)
+{
+    termo_values[idx] = value;
+    termo_update_time[idx] = xTaskGetTickCount();
 }
 
 
 void ThermostatController::setMode(const ThermostatMode mode)
 {
-    thermo_mode = mode;
+    char* msg;
 
-    switch (thermo_mode)
+    switch (mode)
     {
     case NORMAL_MODE:
         memset(termo_coeff, 1, TERMO_COUNT);
-        SendMqtt(status_topic, "{mode:normal}");
+        msg = "normal";
         break;
     case NIGHT_MODE:
         memset(termo_coeff, 0, TERMO_COUNT);
         termo_coeff[BEDROOM_IDX] = 1;
-        SendMqtt(status_topic, "{mode:night}");
+        msg = "night";
         break;
-    case BEDROOM_CLOSE_MODE:
+    case BEDROOM_OFF_MODE:
         memset(termo_coeff, 1, TERMO_COUNT);
         termo_coeff[BEDROOM_IDX] = 0;
-        SendMqtt(status_topic, "{mode:bedroomClose}");
+        msg = "bedroom_off";
         break;
+    }
+
+
+    SendMqtt(MODE_STATE_TOPIC, msg);
+    if (thermo_mode != mode)
+    {
+        thermo_mode = mode;
+#if SEND_RETAIN_TO_TOPIC
+        SendMqtt(MODE_TOPIC, msg, true);
+#endif
     }
 }
 
@@ -165,10 +220,12 @@ void ThermostatController::setFanEnabled(bool val)
     if (val)
     {
         digitalWrite(FAN_PIN, HIGH);
+        SendMqtt(POWER_STATE_TOPIC, "enabled");
     }
     else
     {
         digitalWrite(FAN_PIN, LOW);
+        SendMqtt(POWER_STATE_TOPIC, "disabled");
     }
 }
 
@@ -180,9 +237,11 @@ void ThermostatController::setRelayState(const RelayState state)
         switch (current_state)
         {
         case  HEATING_ENABLED:
+            last_enabled_state = current_state;
             digitalWrite(HEATING_PIN, LOW);
             break;
         case  CONDITIONING_ENABLED:
+            last_enabled_state = current_state;
             digitalWrite(CONDITIONING_PIN, LOW);
             break;
         default:
@@ -203,3 +262,18 @@ void ThermostatController::setRelayState(const RelayState state)
         Serial.printf("RelayState: %d\n", static_cast<int>(state));
     }
 }
+
+
+void ThermostatController::checkActuality()
+{
+    TickType_t cur_tick = xTaskGetTickCount();
+
+    for (int i = 0; i < TERMO_COUNT; ++i)
+    {
+        if ((cur_tick - termo_update_time[i]) / configTICK_RATE_HZ > TEMPR_ACTUALITY_TIME)
+        {
+            termo_values[i] = UNDEFINED_TEMP_VALUE;
+        }
+    }
+}
+

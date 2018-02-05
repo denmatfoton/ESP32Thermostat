@@ -102,6 +102,14 @@ gfx_lib:
 flash: all
 	$(ESPTOOL) $(ESPTOOL_FLASH_PARAMS) $(ALL_BINS_TO_FLASH)
 
+flash_ota: all
+ifdef ESP_IP
+	$(ESPOTATOOL) -i $(ESP_IP) -a $(ESPOTA_PASSOWORD) -f $(MAIN_BIN_PATH) -r
+else
+	@echo Please define ESP_IP
+endif
+	
+
 
 clean:
 	rm -rf $(BINARYDIR)
